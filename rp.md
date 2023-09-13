@@ -5,6 +5,7 @@
 ![Alt text](anh/24.png)
 
 ## 2, Technique: các kĩ thuật sử dụng (theo ATT&CK)
+
 - Persistence TA0003
 
   - Registry Run Keys / Startup Folder T1547.001
@@ -17,6 +18,8 @@
 Uses SMTP (mail sending)
 
 ## 3, Phân tích
+
+### Tạo thư mục EXPLORER
 
 - phân tích main()
 ![Alt text](anh/1.png)
@@ -37,14 +40,18 @@ BOOL ShowWindow(
 
 - Tiếp theo chương trình sẽ get folder mà nó chỉ định để tạo directory và set attributes cho file tên là "Explorer"
 
+### Tạo Unikey.exe
+
 ![Alt text](anh/4.png)
 
 ![Alt text](anh/5.png)
 
 - Tiếp theo sẽ call đến hàm sub_A11220()
   - Đầu tiên hàm thực hiện đổi tên file từ `Explorer.exe` thành `Unikey.exe`
+  
   - Sau đó sẽ create 1 registry key và set value key là Unikey NT ở key RUN để mỗi lần khởi động máy sẽ chạy file này
 
+### Tạo Transfer.exe và Systeminfo.txt
 
 ![Alt text](anh/6.png)
 
@@ -63,6 +70,8 @@ BOOL ShowWindow(
 - Ở đây đầu tiên chương trình sẽ ghi vào file txt "Danh sach phan mem tren may:" và mở key `SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall` sau đó sẽ lấy thông tin như DisplayName, DisplayVersion,InstallLocation để ghi lần lượt vào file `systeminfo.txt` 
 ![Alt text](anh/17.png)
 ![Alt text](anh/11.png)
+
+### Tạo Keylog.dll và Log.txt
 
 - Tiếp theo sẽ tạo 1 thread, đi tới địa chỉ mà chương trình truyền vào.
 ![Alt text](anh/13.png)
@@ -84,6 +93,8 @@ BOOL ShowWindow(
 - Ở hàm "FillKeyboard" sẽ tạo 1 file "Log.txt" và ghi vào file log thời gian truy cập, tên đường dẫn tệp thao tác, ứng dụng và ký tự thao tác với ứng dụng
 
 ![Alt text](anh/20.png)
+
+### Chạy file Transfer.exe
 
 - Tiếp tục với hàm chính của chương trình 
 ![Alt text](anh/11.png)
