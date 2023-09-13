@@ -19,6 +19,7 @@ Uses SMTP (mail sending)
 ## 3, Phân tích
 
 - phân tích main()
+  
 ![Alt text](anh/1.png)
 
 - Đầu tiên chương trình sẽ lấy handle của Console bằng hàm `GetConsoleWindow()` sau đó gọi hàm `ShowWindow()` với đối số truyền vào là handle vừa lấy được và số 0.
